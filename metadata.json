@@ -1,0 +1,6 @@
+{
+  "name": "Sohoj Qurbani",
+  "description": "A trusted platform to find Halal Qurbani partners and calculate costs for the Bangladeshi market.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
