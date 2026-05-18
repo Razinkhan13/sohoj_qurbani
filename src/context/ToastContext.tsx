@@ -33,17 +33,25 @@ const STYLES: Record<ToastType, string> = {
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const counterRef = useRef(0);
+  const timeoutsRef = useRef(new Map<number, ReturnType<typeof setTimeout>>());
+
+  const dismiss = useCallback((id: number) => {
+    const tid = timeoutsRef.current.get(id);
+    if (tid !== undefined) {
+      clearTimeout(tid);
+      timeoutsRef.current.delete(id);
+    }
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
 
   const showToast = useCallback((message: string, type: ToastType = 'info') => {
     const id = ++counterRef.current;
     setToasts((prev) => [...prev, { id, message, type }]);
-    setTimeout(() => {
+    const tid = setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
+      timeoutsRef.current.delete(id);
     }, 4500);
-  }, []);
-
-  const dismiss = useCallback((id: number) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
+    timeoutsRef.current.set(id, tid);
   }, []);
 
   return (

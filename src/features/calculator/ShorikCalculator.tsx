@@ -72,7 +72,7 @@ export const ShorikCalculator: React.FC<Props> = ({ isPro, onRequiresPro }) => {
     element.style.top = '0';
 
     try {
-      await new Promise((r) => setTimeout(r, 80));
+      await new Promise((r) => requestAnimationFrame(r));
       const [{ default: html2canvas }, { default: jsPDF }] = await Promise.all([
         import('html2canvas'),
         import('jspdf'),

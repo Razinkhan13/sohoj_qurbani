@@ -91,8 +91,10 @@ export default function App() {
               {TABS.map((tab) => (
                 <button
                   key={tab.id}
+                  id={`tab-${tab.id}`}
                   role="tab"
                   aria-selected={activeTab === tab.id}
+                  aria-controls={`panel-${tab.id}`}
                   onClick={() => setActiveTab(tab.id)}
                   className={`relative flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${
                     activeTab === tab.id ? 'text-emerald-950' : 'text-emerald-400 hover:text-emerald-200'
@@ -120,6 +122,9 @@ export default function App() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
+            role="tabpanel"
+            id={`panel-${activeTab}`}
+            aria-labelledby={`tab-${activeTab}`}
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -210,9 +215,11 @@ export default function App() {
             return (
               <button
                 key={tab.id}
+                id={`tab-${tab.id}`}
                 role="tab"
                 aria-selected={isActive}
                 aria-label={tab.label}
+                aria-controls={`panel-${tab.id}`}
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex-1 flex flex-col items-center justify-center gap-0.5 relative transition-colors focus:outline-none ${
                   isActive ? 'text-emerald-950' : 'text-gray-400 active:text-emerald-800'

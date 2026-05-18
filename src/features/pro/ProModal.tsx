@@ -56,6 +56,10 @@ export const ProModal: React.FC<Props> = ({ isOpen, onClose, onUpgrade, userCont
     }
     setTrxError('');
     setStep('verifying');
+    // MVP: client-side optimistic activation after UI delay.
+    // Production TODO: POST trxId to a server-side webhook that calls the
+    // bKash/Nagad Verify API, confirms amount === 29 BDT and marks the
+    // user's account active in Supabase before calling onUpgrade().
     setTimeout(() => {
       setStep('success');
       setTimeout(() => {
