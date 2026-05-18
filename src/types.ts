@@ -37,3 +37,22 @@ export interface UserLocation {
 }
 
 export type AuthMethod = 'email' | 'whatsapp';
+
+export interface Kashai {
+  id: string;
+  name: string;
+  type: 'professional' | 'day';
+  area: string;
+  district: string;
+  services: string[];
+  animals: string[];
+  rateRange: string;
+  experience?: string;
+  isHalalCertified: boolean;
+  trustScore: number;
+  phone?: string;
+  slotsAvailable?: number;
+  isVerified: boolean;
+  rating?: number;
+  reviewCount?: number;
+}

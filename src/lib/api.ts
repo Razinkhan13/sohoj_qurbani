@@ -1,7 +1,8 @@
 import { supabase } from './supabase';
 import { MOCK_PARTNERS } from './mockData';
 import { HAATS } from './haatData';
-import type { Haat, Partner } from '../types';
+import { MOCK_KASHAI } from './mockKashaiData';
+import type { Haat, Kashai, Partner } from '../types';
 
 const escapeForOr = (s: string) => s.replace(/[,()*]/g, ' ').trim();
 
@@ -60,6 +61,28 @@ export const api = {
       }
     }
     return HAATS;
+  },
+
+  async fetchKashai(filter = '', type?: 'professional' | 'day'): Promise<Kashai[]> {
+    if (supabase) {
+      try {
+        let query = supabase.from('kashai').select('*').eq('is_active', true);
+        if (type) query = query.eq('type', type);
+        const safe = escapeForOr(filter);
+        if (safe) query = query.or(`area.ilike.%${safe}%,district.ilike.%${safe}%`);
+        const { data, error } = await query;
+        if (!error && data && data.length > 0) return data as Kashai[];
+      } catch (err) {
+        console.error('Supabase fetchKashai error — using mock data', err);
+      }
+    }
+    await new Promise((r) => setTimeout(r, 400));
+    return MOCK_KASHAI.filter((k) => {
+      const matchType = !type || k.type === type;
+      const matchFilter =
+        !filter || k.area.includes(filter) || k.district.includes(filter) || k.name.includes(filter);
+      return matchType && matchFilter;
+    });
   },
 
   async sendRequest(_id: string): Promise<{ success: boolean }> {

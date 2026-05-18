@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
+import { QuranVerse } from '../../components/QuranVerse';
 
 const TARGET_DATE = new Date('2026-05-27T00:00:00+06:00').getTime();
 
@@ -46,7 +47,15 @@ export const CountdownTimer: React.FC = () => {
         >
           আসন্ন পবিত্র ঈদ-উল-আযহা ২০২৬
         </motion.div>
-        <p className="text-emerald-100/90 text-lg md:text-xl xl:text-2xl mb-10 font-semibold">২৭ মে, ২০২৬ (১০ জিলহজ্জ ১৪৪৭ হিজরি)</p>
+        <p className="text-emerald-100/90 text-lg md:text-xl xl:text-2xl mb-6 font-semibold">২৭ মে, ২০২৬ (১০ জিলহজ্জ ১৪৪৭ হিজরি)</p>
+        <div className="mb-10">
+          <QuranVerse
+            arabic="قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ"
+            translation="বলুন, নিশ্চয়ই আমার নামাজ, আমার কুরবানি, আমার জীবন ও মৃত্যু সবই আল্লাহর জন্য।"
+            reference="সূরা আল-আনআম ৬:১৬২"
+            variant="dark"
+          />
+        </div>
         <div className="flex justify-center gap-4 md:gap-8 max-w-2xl mx-auto">
           {items.map((item, idx) => (
             <motion.div

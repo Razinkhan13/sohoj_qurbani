@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShieldCheck, Info, ArrowRight } from 'lucide-react';
+import { QuranVerse } from '../../components/QuranVerse';
 
 interface Props { onAccept: () => void; }
 
@@ -32,6 +33,12 @@ export const HalalDeclarationModal: React.FC<Props> = ({ onAccept }) => (
           <p className="text-emerald-200/90 text-sm font-medium relative z-10">শরীয়াহ বোর্ডের নির্দেশিকা অনুযায়ী বাধ্যতামূলক</p>
         </div>
         <div className="p-8 space-y-6">
+          <QuranVerse
+            arabic="يَا أَيُّهَا النَّاسُ كُلُوا مِمَّا فِي الْأَرْضِ حَلَالًا طَيِّبًا"
+            translation="হে মানুষ! পৃথিবীতে যা হালাল ও পবিত্র তা খাও।"
+            reference="সূরা আল-বাকারা ২:১৬৮"
+            variant="light"
+          />
           <p className="text-emerald-900 font-semibold text-lg leading-relaxed text-center italic opacity-90">
             "আমি আল্লাহ সুবহানাহু ওয়া তা'আলাকে সাক্ষী রেখে ঘোষণা করছি যে, আমার কুরবানির জন্য বরাদ্দকৃত সম্পূর্ণ অর্থ শতভাগ হালাল এবং বৈধ উপার্জন থেকে সংগৃহীত। এতে কোনো সুদ (রিবা), ঘুষ, বা শরীয়াহ-পরিপন্থী কোনো উপার্জনের মিশ্রণ নেই।"
           </p>

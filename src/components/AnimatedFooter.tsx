@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ShieldCheck } from 'lucide-react';
+import { QuranVerse } from './QuranVerse';
 
 export const AnimatedFooter: React.FC = () => (
   <footer className="relative bg-emerald-950 py-12 md:py-16 overflow-hidden mt-auto print:hidden">
@@ -21,7 +22,16 @@ export const AnimatedFooter: React.FC = () => (
         বাংলাদেশের প্রথম শরীয়াহসম্মত কুরবানি ব্যবস্থাপনা প্ল্যাটফর্ম — হালাল উপার্জনের নিরাপদ অংশীদারিত্ব।
       </p>
 
-      <div className="w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-emerald-800/80 to-transparent mb-10" />
+      <div className="w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-emerald-800/80 to-transparent mb-8" />
+
+      <div className="w-full max-w-xl mx-auto mb-10">
+        <QuranVerse
+          arabic="وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ"
+          translation="নেক কাজ ও তাকওয়ায় একে অপরকে সহযোগিতা করো।"
+          reference="সূরা আল-মায়িদা ৫:২"
+          variant="dark"
+        />
+      </div>
 
       <motion.div
         animate={{

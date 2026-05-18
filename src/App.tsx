@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calculator, Users, Home, ShieldCheck, MapPin } from 'lucide-react';
+import { Calculator, Users, Home, ShieldCheck, MapPin, Scissors } from 'lucide-react';
 
 import { Card } from './components/Card';
+import { QuranVerse } from './components/QuranVerse';
 import { AnimatedFooter } from './components/AnimatedFooter';
 import { HalalDeclarationModal } from './features/halal/HalalDeclarationModal';
 import { CountdownTimer } from './features/home/CountdownTimer';
 import { ShorikCalculator } from './features/calculator/ShorikCalculator';
 import { PartnerMatch } from './features/partners/PartnerMatch';
 import { HaatFinder } from './features/haat/HaatFinder';
+import { KashaiMatch } from './features/kashai/KashaiMatch';
 import { AuthModal } from './features/auth/AuthModal';
 import { ProModal } from './features/pro/ProModal';
 
-type TabId = 'home' | 'calculator' | 'partners' | 'haat';
+type TabId = 'home' | 'calculator' | 'partners' | 'haat' | 'kashai';
 
 const TABS: { id: TabId; label: string; shortLabel: string; icon: typeof Home }[] = [
   { id: 'home',       label: 'মূল পাতা',    shortLabel: 'হোম',  icon: Home       },
   { id: 'calculator', label: 'হিসাব-নিকাশ', shortLabel: 'হিসাব', icon: Calculator },
   { id: 'partners',   label: 'শরিক খুঁজুন', shortLabel: 'শরিক', icon: Users       },
   { id: 'haat',       label: 'পশুর হাট',    shortLabel: 'হাট',  icon: MapPin      },
+  { id: 'kashai',     label: 'কসাই খুঁজুন', shortLabel: 'কসাই', icon: Scissors    },
 ];
 
 export default function App() {
@@ -158,6 +161,13 @@ export default function App() {
 
                 <CountdownTimer />
 
+                <QuranVerse
+                  arabic="لَن يَنَالَ اللَّهَ لُحُومُهَا وَلَا دِمَاؤُهَا وَلَٰكِن يَنَالُهُ التَّقْوَىٰ مِنكُمْ"
+                  translation="আল্লাহর কাছে পৌঁছায় না কুরবানির গোশত বা রক্ত, বরং তাঁর কাছে পৌঁছায় তোমাদের তাকওয়া।"
+                  reference="সূরা আল-হজ্জ ২২:৩৭"
+                  variant="light"
+                />
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pb-12">
                   <Card className="p-8 text-center group" onClick={() => setActiveTab('calculator')}>
                     <div className="bg-amber-50 group-hover:bg-amber-400 group-hover:text-emerald-950 transition-all duration-500 w-20 h-20 rounded-[1.75rem] flex items-center justify-center mx-auto mb-6 text-amber-600 shadow-inner group-hover:shadow-xl group-hover:-translate-y-2">
@@ -197,6 +207,7 @@ export default function App() {
               <PartnerMatch isPro={isPro} onRequiresPro={handleRequiresPro} />
             )}
             {activeTab === 'haat' && <HaatFinder />}
+            {activeTab === 'kashai' && <KashaiMatch />}
           </motion.div>
         </AnimatePresence>
       </main>
